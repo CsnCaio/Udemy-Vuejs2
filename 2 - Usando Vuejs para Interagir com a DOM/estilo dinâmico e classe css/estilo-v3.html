@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Estilos e classes</title>
+</head>
+
+<body>
+    <style>
+        .caixas {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .demo {
+            background-color: gray;
+            width: 100px;
+            height: 100px;
+        }
+
+        .cor-1 {
+            background-color: red;
+        }
+
+        .cor-2 {
+            background-color: green;
+        }
+
+        .cor-3 {
+            background-color: blue;
+        }
+
+        .giro {
+            transform: rotate(45deg);
+        }
+    </style>
+
+    <div id="app">
+        <div id="caixas">
+            <div class="demo" :class="estilo1" @click="aplicaCor1 = !aplicaCor1"></div>
+            <div class="demo"></div>
+            <div class="demo" :class="[classeCss, {'giro' : aplicarGiro}]"></div>
+        </div>
+        <hr>
+        <input type="text" v-model="classeCss">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                aplicaCor1: false,
+                classeCss: 'cor-1',
+                aplicarGiro: true
+            },
+            computed: {
+                estilo1() {
+                    return {
+                        'cor-1': this.aplicaCor1,
+                        'cor-2': !this.aplicaCor1
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
